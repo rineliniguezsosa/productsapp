@@ -1,10 +1,47 @@
+/* eslint-disable react-native/no-inline-styles */
 import React from 'react';
-import { View,Text } from 'react-native';
+import { Layout,Text,Input,Button } from '@ui-kitten/components';
+import { useWindowDimensions,ScrollView } from 'react-native';
 
 export const LoginScreen = () => {
+  const { height } = useWindowDimensions();
   return (
-    <View>
-      <Text>LoginScreen</Text>
-    </View>
+    <Layout style={{flex:1}}>
+      <ScrollView style={{marginHorizontal:40}}>
+
+        <Layout style={{paddingTop:height * 0.35}} >
+          <Text category="h1">Ingresar</Text>
+          <Text category="p">Porfavor,Ingrese para continuar</Text>
+        </Layout>
+
+        <Layout style={{marginTop:20}}>
+
+          <Input
+            placeholder="Email"
+            autoCapitalize="none"
+            keyboardType="email-address"
+            style={{marginBottom:10}}
+          />
+          <Input
+            placeholder="Contraseña"
+            autoCapitalize="none"
+            secureTextEntry
+            style={{marginBottom:10}}
+          />
+
+        </Layout>
+
+        <Layout style={{marginTop:20}}>
+          <Button onPress={()=> {}}>
+            Ingresar
+          </Button>
+        </Layout>
+
+        <Layout style={{marginTop:20,flexDirection:'row',justifyContent:'center',alignItems:'flex-end'}}>
+          <Text status="primary" category="s1" onPress={()=> {}}>¿No tienes cuenta?</Text>
+        </Layout>
+
+      </ScrollView>
+    </Layout>
   );
 };
