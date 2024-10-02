@@ -10,4 +10,4 @@ export interface MyIconProps {
     name:string,
     color?:string,
     white?:boolean
-};
+}
