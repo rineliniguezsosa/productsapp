@@ -1,6 +1,6 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
-import { RootStackParams } from '../types/Interfaces';
+import { RootStackParams } from '../Interfaces/Interfaces';
 import { HomeScreen,LoginScreen,RegisterScreen,LoadingScreen,ProductScreen } from '../presentation/screens';
 
 const Stack = createStackNavigator<RootStackParams>();
