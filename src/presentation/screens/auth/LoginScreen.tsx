@@ -3,8 +3,12 @@ import React from 'react';
 import { Layout,Text,Input,Button } from '@ui-kitten/components';
 import { useWindowDimensions,ScrollView } from 'react-native';
 import { MyIcon } from '../../../components/ui/MyIcon';
+import { StackScreenProps } from '@react-navigation/stack';
+import { RootStackParams } from '../../../types/Interfaces';
 
-export const LoginScreen = () => {
+interface Props extends StackScreenProps<RootStackParams,'LoginScreen'>{}
+
+export const LoginScreen = ({navigation}:Props) => {
   const { height } = useWindowDimensions();
   return (
     <Layout style={{flex:1}}>
@@ -41,7 +45,7 @@ export const LoginScreen = () => {
         </Layout>
 
         <Layout style={{marginTop:20,flexDirection:'row',justifyContent:'center',alignItems:'flex-end'}}>
-          <Text status="primary" category="s1" onPress={()=> {}}>¿No tienes cuenta?</Text>
+          <Text status="primary" category="s1" onPress={()=> navigation.navigate('RegisterScreen')}>¿No tienes cuenta?</Text>
         </Layout>
 
       </ScrollView>
