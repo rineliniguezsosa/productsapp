@@ -1,6 +1,6 @@
 import React from 'react';
 import { Icon,useTheme } from '@ui-kitten/components';
-import { MyIconProps } from '../../types/Interfaces';
+import { MyIconProps } from '../../Interfaces/Interfaces';
 import { StyleSheet } from 'react-native';
 
 export const MyIcon = ({name,color,white}:MyIconProps) => {
