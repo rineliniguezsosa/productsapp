@@ -6,12 +6,17 @@ import { MyIcon } from '../../../components/ui/MyIcon';
 import { StackScreenProps } from '@react-navigation/stack';
 import { RootStackParams } from '../../../Interfaces/Interfaces';
 import { API_URL_ANDROID } from '@env';
+import { useForm } from '../../../hooks/useForm';
 
 
 interface Props extends StackScreenProps<RootStackParams,'LoginScreen'>{}
 
 export const LoginScreen = ({navigation}:Props) => {
   const { height } = useWindowDimensions();
+  const {form,handleChange} = useForm({
+    email:'',
+    password:'',
+  });
   console.log(height);
   console.log(API_URL_ANDROID);
 
@@ -31,18 +36,22 @@ export const LoginScreen = ({navigation}:Props) => {
             autoCapitalize="none"
             keyboardType="email-address"
             style={{marginBottom:10}}
+            value={form.email}
             accessoryLeft={<MyIcon name="email-outline"/>}
+            onChangeText={(text)=> handleChange('email',text)}
           />
           <Input
             placeholder="Contraseña"
             autoCapitalize="none"
             secureTextEntry
+            value={form.password}
+            onChangeText={(text)=> handleChange('password',text)}
             style={{marginBottom:10}}
             accessoryLeft={<MyIcon name="lock-outline"/>}
           />
 
         </Layout>
-
+        <Text>{JSON.stringify(form.email)}</Text>
         <Layout style={{marginTop:20}}>
           <Button accessoryRight={<MyIcon name="arrow-forward-outline" white/>} onPress={()=> {}}>
             Ingresar
