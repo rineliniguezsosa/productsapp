@@ -29,6 +29,8 @@ export const LoginScreen = ({navigation}:Props) => {
     }
     setIsposting(true);
     const responseApi = await login(form.email,form.password);
+    console.log('responseApi: ',responseApi);
+
     setIsposting(false);
 
     if(responseApi) {return;}
