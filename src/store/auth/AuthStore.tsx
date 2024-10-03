@@ -1,0 +1,32 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import { create } from 'zustand';
+import { User } from '../../Interfaces/Interfaces';
+import { authLogin } from '../../actions/auth/auth';
+
+type AuthStatusTypes = 'check' | 'notauthenticated' | 'authenticated';
+
+interface AuthState {
+    status: AuthStatusTypes,
+    token?:string,
+    user?:User,
+    login:(email:string,password:string)=> Promise<boolean>
+}
+
+
+export const useAuthStore = create<AuthState>()((set,get)=>({
+    status:'check',
+    token:undefined,
+    user:undefined,
+    login:async(email:string,password:string) =>{
+        const resp = await authLogin(email,password);
+        if (!resp) {
+            set({status:'authenticated',token:undefined,user:undefined});
+            return false;
+        }
+
+        //save token in localStorage
+
+        set({status:'authenticated',token:resp.token,user:resp.user});
+        return true;
+    },
+}));
