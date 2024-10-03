@@ -17,6 +17,7 @@ const userAuth = (data:Authresponse) => {
     };
 };
 export const authLogin = async(email:string,password:string) =>{
+    email.toLowerCase();
     try {
         const { data } = await tesloApi.post<Authresponse>('/auth/login',{email,password});
 
