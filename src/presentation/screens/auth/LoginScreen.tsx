@@ -35,7 +35,7 @@ export const LoginScreen = ({navigation}:Props) => {
 
     if(responseApi) {return;}
 
-    Alert.alert('Usuario ó contraseña incorrectos');
+    Alert.alert('Error','Usuario ó contraseña incorrectos');
   };
 
   return (
@@ -69,9 +69,9 @@ export const LoginScreen = ({navigation}:Props) => {
           />
 
         </Layout>
-        <Text>{JSON.stringify(form.email)}</Text>
+        <Text>{JSON.stringify(form)}</Text>
         <Layout style={{marginTop:20}}>
-          <Button disabled={isposting} accessoryRight={<MyIcon name="arrow-forward-outline" white/>} onPress={()=> onLogin}>
+          <Button disabled={isposting} accessoryRight={<MyIcon name="arrow-forward-outline" white/>} onPress={onLogin}>
             Ingresar
           </Button>
         </Layout>
