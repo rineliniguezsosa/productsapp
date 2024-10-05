@@ -2,6 +2,7 @@
 import { create } from 'zustand';
 import { User } from '../../Interfaces/Interfaces';
 import { authLogin } from '../../actions/auth/auth';
+import { StorageAdapter } from '../../helpers/async.storage';
 
 type AuthStatusTypes = 'check' | 'notauthenticated' | 'authenticated';
 
@@ -27,6 +28,7 @@ export const useAuthStore = create<AuthState>()((set,get)=>({
         }
 
         //save token in localStorage
+        await StorageAdapter.setItem('token',resp.token);
 
         set({status:'authenticated',token:resp.token,user:resp.user});
         return true;
