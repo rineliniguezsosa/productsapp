@@ -9,4 +9,12 @@ export class StorageAdapter {
             return null;
         }
     }
+
+    static async setItem(key:string,value:string):Promise<void>{
+        try {
+            return await AsyncStorage.setItem(key,value);
+        } catch (error) {
+            throw new Error(`Error al guardar la información ${key} y ${value}`);
+        }
+    }
 }
