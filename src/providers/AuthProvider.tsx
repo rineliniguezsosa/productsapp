@@ -17,9 +17,9 @@ export const AuthProvider = ({children}:PropsWithChildren) => {
         if(status !== 'check'){
             if (status === 'authenticated') {
                 navigation.reset({index:0,routes:[{name:'HomeScreen'}]});
+            }else{
+                navigation.reset({index:0,routes:[{name:'LoginScreen'}]});
             }
-        }else{
-            navigation.reset({index:0,routes:[{name:'LoginScreen'}]});
         }
     },[status]);
 
