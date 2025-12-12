@@ -3,8 +3,8 @@ import { create } from 'zustand';
 import { User } from '../../Interfaces/Interfaces';
 import { authCheckStatus, authLogin } from '../../actions/auth/auth';
 import { StorageAdapter } from '../../helpers/async.storage';
+import { AuthStatusTypes } from '../../infrastructure/auth.status'
 
-type AuthStatusTypes = 'check' | 'notauthenticated' | 'authenticated';
 
 interface AuthState {
     status: AuthStatusTypes,
@@ -25,7 +25,7 @@ export const useAuthStore = create<AuthState>()((set,get)=>({
         console.log(resp);
 
         if (!resp) {
-            set({status:'authenticated',token:undefined,user:undefined});
+            set({status:'notauthenticated',token:undefined,user:undefined});
             return false;
         }
 
@@ -37,9 +37,10 @@ export const useAuthStore = create<AuthState>()((set,get)=>({
     },
     checkStatus:async() =>{
         const resp = await authCheckStatus();
+        console.log("resp: ",resp);
 
         if (!resp) {
-            set({status:'authenticated',token:undefined,user:undefined});
+            set({status:'notauthenticated',token:undefined,user:undefined});
             return;
         }
 
@@ -51,6 +52,6 @@ export const useAuthStore = create<AuthState>()((set,get)=>({
     },
     logout:async() =>{
         await StorageAdapter.removeItem('token');
-        set({status:'authenticated',token:undefined,user:undefined});
+        set({status:'notauthenticated',token:undefined,user:undefined});
     },
 }));
